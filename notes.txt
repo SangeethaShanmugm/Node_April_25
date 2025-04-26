@@ -1,6 +1,7 @@
 github repo => https://github.com/SangeethaShanmugm
 
 extensions
+------------
 
 >> Prettier - Code formatter
 >> Spell check
