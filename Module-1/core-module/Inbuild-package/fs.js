@@ -20,8 +20,14 @@ const quote2 = "Live more, worry less"
 //     console.log(i)
 // }
 
+// for (let i = 1; i <= 10; i++) {
+//     fs.writeFile(`./backup/text-${i}.html`, quote, () => {
+//         console.log(`File written successfully for text-${i}.html`);
+//     })
+// }
+
+
 for (let i = 1; i <= 10; i++) {
-    fs.writeFile(`./backup/text-${i}.html`, quote, () => {
-        console.log(`File written successfully for text-${i}.html`);
-    })
+    fs.writeFileSync(`./backup/note-${i}.html`, quote);
+    console.log(`File written successfully for note-${i}.html`);
 }
