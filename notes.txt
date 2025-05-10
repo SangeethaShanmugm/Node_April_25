@@ -19,3 +19,8 @@ https://git-scm.com/downloads => download gitbash
 Set your username: git config --global user.name "FIRST_NAME LAST_NAME"
 Set your email address: git config --global user.email "MY_NAME@example.com"
 
+
+Promise
+-----------
+Monkey D. Luff -> straw Hat Pirates
+Promise is object represents the eventual completion or failure of an asynchronous operation
