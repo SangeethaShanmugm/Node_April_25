@@ -24,3 +24,13 @@ Promise
 -----------
 Monkey D. Luff -> straw Hat Pirates
 Promise is object represents the eventual completion or failure of an asynchronous operation
+
+
+
+mongo --version -> to check version
+
+show dbs => list all dbs
+use dbName => switch/create a db
+show collections => list all collections in db
+db  => current db
+
