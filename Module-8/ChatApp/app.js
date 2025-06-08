@@ -1,0 +1,42 @@
+import express from 'express';
+import path from "path"
+import http from "http"
+let io = require("socket.io")
+const iplocate = require("node-iplocate")
+const publicIp = require("public-ip")
+const LocalStorage = require("node-localstorage").LocalStorage
+let localStorage = new LocalStorage("./scratch")
+
+
+let app = express();
+const PORT = 4000
+
+app.use(express.static(path.join(__dirname, "public")))
+
+app.get("/", (req, res) => {
+    res.render("index.html")
+})
+
+// app.listen(PORT, () => console.log("Server started on the PORT", PORT))
+
+let server = http.createServer(app)
+    .listen(PORT, () => console.log("Server started on the PORT", PORT))
+
+io = require("socket.io").listen(server)
+
+//handle socket connection
+
+io.sockets.on("connection", (socket) => { //incoming socket connection
+    var list = io.sockets.sockets; //access all connected sockets, list of sockets
+    console.log("Socket List => ", list);
+    var users = Object.keys(list);
+    // var users = Array.from(list.keys())
+    console.log(users);
+
+
+    //set a nickname
+    socket.on("nick", (nick) => {
+        socket.set("nickText", nick)//save the nickname
+        socket.emit("userList", users)//emit the updated user list to client
+    })
+})

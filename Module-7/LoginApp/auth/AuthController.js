@@ -53,7 +53,7 @@ router.post("/login", (req, res) => {
             expiresIn: 86400
         })
         localStorage.setItem("authToken", token)
-        res.redirect("profile")
+        res.redirect("/users/profile")
     })
 })
 
