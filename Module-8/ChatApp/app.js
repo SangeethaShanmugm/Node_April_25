@@ -39,4 +39,30 @@ io.sockets.on("connection", (socket) => { //incoming socket connection
         socket.set("nickText", nick)//save the nickname
         socket.emit("userList", users)//emit the updated user list to client
     })
+
+    //set a chat
+
+    socket.on("chat", (data) => {
+        socket.get("nickText", (err, nick) => {
+            //get public ip address
+            publicIp.v4().then((ipaddress) => {
+                iplocate(ipaddress).then((results) => {
+                    console.log("PUblic Ip address", results);
+                    let city = JSON.stringify(results.city)
+                    localStorage.setItem("userLocal", city)
+                })
+            })
+
+            let nickname = err ? "Anonymous" : nick;
+
+            let payload = {
+                message: data.message,
+                nick: nickname,
+                location: localStorage.getItem("userLocal")
+            }
+            console.log(payload);
+            socket.emit("chat", payload)//only the client
+            socket.broadcast.emit("chat", payload)//all connected client
+        })
+    })
 })
